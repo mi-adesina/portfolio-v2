@@ -1,0 +1,203 @@
+===== npm run lint =====
+
+> michael-adesina-portfolio@0.1.0 lint
+> next lint
+
+
+./app/not-found.tsx
+1:8  Error: 'Link' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./components/ui/button.tsx
+67:20  Error: '_variant' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+67:36  Error: '_size' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+67:54  Error: '_className' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+67:76  Error: '_children' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+
+===== npx tsc --noEmit =====
+app/admin/(dashboard)/blog/[id]/page.tsx(15,39): error TS2345: Argument of type 'SupabaseClient<Database, "public", { Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }, never, { ...; }>' is not assignable to parameter of type 'AppSupabaseClient'.
+  Type '{ Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }' is not assignable to type '"public"'.
+app/admin/(dashboard)/blog/page.tsx(11,40): error TS2345: Argument of type 'SupabaseClient<Database, "public", { Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }, never, { ...; }>' is not assignable to parameter of type 'AppSupabaseClient'.
+  Type '{ Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }' is not assignable to type '"public"'.
+app/admin/(dashboard)/blog/page.tsx(44,31): error TS2339: Property 'id' does not exist on type 'never'.
+app/admin/(dashboard)/blog/page.tsx(47,49): error TS2339: Property 'id' does not exist on type 'never'.
+app/admin/(dashboard)/blog/page.tsx(50,29): error TS2339: Property 'title' does not exist on type 'never'.
+app/admin/(dashboard)/blog/page.tsx(57,30): error TS2339: Property 'id' does not exist on type 'never'.
+app/admin/(dashboard)/blog/page.tsx(58,30): error TS2339: Property 'status' does not exist on type 'never'.
+app/admin/(dashboard)/blog/page.tsx(66,31): error TS2339: Property 'status' does not exist on type 'never'.
+app/admin/(dashboard)/blog/page.tsx(71,27): error TS2339: Property 'published_at' does not exist on type 'never'.
+app/admin/(dashboard)/blog/page.tsx(72,39): error TS2339: Property 'published_at' does not exist on type 'never'.
+app/admin/(dashboard)/blog/page.tsx(78,51): error TS2339: Property 'id' does not exist on type 'never'.
+app/admin/(dashboard)/blog/page.tsx(83,64): error TS2339: Property 'id' does not exist on type 'never'.
+app/admin/(dashboard)/blog/page.tsx(86,59): error TS2339: Property 'title' does not exist on type 'never'.
+app/admin/(dashboard)/page.tsx(9,41): error TS2345: Argument of type 'SupabaseClient<Database, "public", { Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }, never, { ...; }>' is not assignable to parameter of type 'AppSupabaseClient'.
+  Type '{ Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }' is not assignable to type '"public"'.
+app/admin/(dashboard)/page.tsx(44,28): error TS2339: Property 'id' does not exist on type 'never'.
+app/admin/(dashboard)/page.tsx(48,50): error TS2339: Property 'id' does not exist on type 'never'.
+app/admin/(dashboard)/page.tsx(51,26): error TS2339: Property 'title' does not exist on type 'never'.
+app/admin/(dashboard)/page.tsx(54,26): error TS2339: Property 'status' does not exist on type 'never'.
+app/admin/(dashboard)/projects/[id]/page.tsx(20,25): error TS2345: Argument of type 'SupabaseClient<Database, "public", { Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }, never, { ...; }>' is not assignable to parameter of type 'AppSupabaseClient'.
+  Type '{ Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }' is not assignable to type '"public"'.
+app/admin/(dashboard)/projects/[id]/page.tsx(21,24): error TS2345: Argument of type 'SupabaseClient<Database, "public", { Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }, never, { ...; }>' is not assignable to parameter of type 'AppSupabaseClient'.
+  Type '{ Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }' is not assignable to type '"public"'.
+app/admin/(dashboard)/projects/new/page.tsx(12,49): error TS2345: Argument of type 'SupabaseClient<Database, "public", { Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }, never, { ...; }>' is not assignable to parameter of type 'AppSupabaseClient'.
+  Type '{ Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }' is not assignable to type '"public"'.
+app/admin/(dashboard)/projects/page.tsx(16,46): error TS2345: Argument of type 'SupabaseClient<Database, "public", { Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }, never, { ...; }>' is not assignable to parameter of type 'AppSupabaseClient'.
+  Type '{ Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }' is not assignable to type '"public"'.
+app/admin/(dashboard)/projects/page.tsx(50,34): error TS2339: Property 'id' does not exist on type 'never'.
+app/admin/(dashboard)/projects/page.tsx(53,56): error TS2339: Property 'id' does not exist on type 'never'.
+app/admin/(dashboard)/projects/page.tsx(56,32): error TS2339: Property 'title' does not exist on type 'never'.
+app/admin/(dashboard)/projects/page.tsx(63,33): error TS2339: Property 'id' does not exist on type 'never'.
+app/admin/(dashboard)/projects/page.tsx(64,33): error TS2339: Property 'status' does not exist on type 'never'.
+app/admin/(dashboard)/projects/page.tsx(72,34): error TS2339: Property 'status' does not exist on type 'never'.
+app/admin/(dashboard)/projects/page.tsx(80,33): error TS2339: Property 'id' does not exist on type 'never'.
+app/admin/(dashboard)/projects/page.tsx(81,34): error TS2339: Property 'featured' does not exist on type 'never'.
+app/admin/(dashboard)/projects/page.tsx(87,35): error TS2339: Property 'featured' does not exist on type 'never'.
+app/admin/(dashboard)/projects/page.tsx(93,34): error TS2339: Property 'featured' does not exist on type 'never'.
+app/admin/(dashboard)/projects/page.tsx(99,69): error TS2339: Property 'id' does not exist on type 'never'.
+app/admin/(dashboard)/projects/page.tsx(102,76): error TS2339: Property 'id' does not exist on type 'never'.
+app/admin/(dashboard)/projects/page.tsx(103,52): error TS2339: Property 'title' does not exist on type 'never'.
+app/admin/(dashboard)/projects/page.tsx(106,46): error TS2339: Property 'id' does not exist on type 'never'.
+app/admin/(dashboard)/projects/page.tsx(109,47): error TS2339: Property 'display_order' does not exist on type 'never'.
+app/admin/(dashboard)/projects/page.tsx(123,58): error TS2339: Property 'id' does not exist on type 'never'.
+app/admin/(dashboard)/projects/page.tsx(128,70): error TS2339: Property 'id' does not exist on type 'never'.
+app/admin/(dashboard)/projects/page.tsx(131,62): error TS2339: Property 'title' does not exist on type 'never'.
+components/admin/admin-sidebar.tsx(20,15): error TS2322: Type 'string' is not assignable to type 'UrlObject | RouteImpl<string>'.
+components/ui/button.tsx(61,13): error TS2322: Type 'string' is not assignable to type 'UrlObject | RouteImpl<string>'.
+lib/actions/blog.ts(41,25): error TS2339: Property 'id' does not exist on type 'never'.
+lib/actions/blog.ts(47,17): error TS2353: Object literal may only specify known properties, and 'name' does not exist in type 'never[]'.
+lib/actions/blog.ts(57,39): error TS2339: Property 'id' does not exist on type 'never'.
+lib/actions/blog.ts(61,22): error TS2339: Property 'id' does not exist on type 'never'.
+lib/actions/blog.ts(86,37): error TS2345: Argument of type 'SupabaseClient<Database, "public", { Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }, never, { ...; }>' is not assignable to parameter of type 'SupabaseClient<Database, "public", "public", never, { PostgrestVersion: "12"; }>'.
+  Type '{ Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }' is not assignable to type '"public"'.
+lib/actions/blog.ts(90,34): error TS2345: Argument of type 'SupabaseClient<Database, "public", { Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }, never, { ...; }>' is not assignable to parameter of type 'SupabaseClient<Database, "public", "public", never, { PostgrestVersion: "12"; }>'.
+  Type '{ Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }' is not assignable to type '"public"'.
+lib/actions/blog.ts(101,7): error TS2353: Object literal may only specify known properties, and 'title' does not exist in type 'never[]'.
+lib/actions/blog.ts(124,38): error TS2345: Argument of type 'SupabaseClient<Database, "public", { Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }, never, { ...; }>' is not assignable to parameter of type 'SupabaseClient<Database, "public", "public", never, { PostgrestVersion: "12"; }>'.
+  Type '{ Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }' is not assignable to type '"public"'.
+lib/actions/blog.ts(127,7): error TS2345: Argument of type '{ post_id: any; tag_id: string; }[]' is not assignable to parameter of type 'never[]'.
+  Type '{ post_id: any; tag_id: string; }' is not assignable to type 'never'.
+lib/actions/blog.ts(127,47): error TS2339: Property 'id' does not exist on type 'never'.
+lib/actions/blog.ts(132,32): error TS2339: Property 'id' does not exist on type 'never'.
+lib/actions/blog.ts(154,29): error TS2339: Property 'cover_image' does not exist on type 'never'.
+lib/actions/blog.ts(155,26): error TS2339: Property 'og_image' does not exist on type 'never'.
+lib/actions/blog.ts(160,41): error TS2345: Argument of type 'SupabaseClient<Database, "public", { Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }, never, { ...; }>' is not assignable to parameter of type 'SupabaseClient<Database, "public", "public", never, { PostgrestVersion: "12"; }>'.
+  Type '{ Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }' is not assignable to type '"public"'.
+lib/actions/blog.ts(161,32): error TS2345: Argument of type 'SupabaseClient<Database, "public", { Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }, never, { ...; }>' is not assignable to parameter of type 'SupabaseClient<Database, "public", "public", never, { PostgrestVersion: "12"; }>'.
+  Type '{ Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }' is not assignable to type '"public"'.
+lib/actions/blog.ts(166,41): error TS2345: Argument of type 'SupabaseClient<Database, "public", { Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }, never, { ...; }>' is not assignable to parameter of type 'SupabaseClient<Database, "public", "public", never, { PostgrestVersion: "12"; }>'.
+  Type '{ Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }' is not assignable to type '"public"'.
+lib/actions/blog.ts(167,32): error TS2345: Argument of type 'SupabaseClient<Database, "public", { Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }, never, { ...; }>' is not assignable to parameter of type 'SupabaseClient<Database, "public", "public", never, { PostgrestVersion: "12"; }>'.
+  Type '{ Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }' is not assignable to type '"public"'.
+lib/actions/blog.ts(181,19): error TS2339: Property 'published_at' does not exist on type 'never'.
+lib/actions/blog.ts(182,19): error TS2339: Property 'published_at' does not exist on type 'never'.
+lib/actions/blog.ts(186,13): error TS2345: Argument of type '{ title: string; slug: string; excerpt: string | null; content: string; cover_image: any; og_image: any; status: "draft" | "published"; published_at: any; category: string | null; seo_title: string | null; seo_description: string | null; }' is not assignable to parameter of type 'never'.
+lib/actions/blog.ts(206,38): error TS2345: Argument of type 'SupabaseClient<Database, "public", { Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }, never, { ...; }>' is not assignable to parameter of type 'SupabaseClient<Database, "public", "public", never, { PostgrestVersion: "12"; }>'.
+  Type '{ Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }' is not assignable to type '"public"'.
+lib/actions/blog.ts(209,7): error TS2345: Argument of type '{ post_id: string; tag_id: string; }[]' is not assignable to parameter of type 'never[]'.
+  Type '{ post_id: string; tag_id: string; }' is not assignable to type 'never'.
+lib/actions/blog.ts(226,28): error TS2345: Argument of type 'SupabaseClient<Database, "public", { Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }, never, { ...; }>' is not assignable to parameter of type 'SupabaseClient<Database, "public", "public", never, { PostgrestVersion: "12"; }>'.
+  Type '{ Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }' is not assignable to type '"public"'.
+lib/actions/blog.ts(226,45): error TS2339: Property 'cover_image' does not exist on type 'never'.
+lib/actions/blog.ts(226,64): error TS2339: Property 'og_image' does not exist on type 'never'.
+lib/actions/blog.ts(231,29): error TS2339: Property 'slug' does not exist on type 'never'.
+lib/actions/blog.ts(245,13): error TS2345: Argument of type '{ status: "draft" | "published"; published_at: any; }' is not assignable to parameter of type 'never'.
+lib/actions/blog.ts(249,23): error TS2339: Property 'published_at' does not exist on type 'never'.
+lib/actions/blog.ts(250,23): error TS2339: Property 'published_at' does not exist on type 'never'.
+lib/actions/blog.ts(255,33): error TS2339: Property 'slug' does not exist on type 'never'.
+lib/actions/projects.ts(43,37): error TS2345: Argument of type 'SupabaseClient<Database, "public", { Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }, never, { ...; }>' is not assignable to parameter of type 'SupabaseClient<Database, "public", "public", never, { PostgrestVersion: "12"; }>'.
+  Type '{ Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }' is not assignable to type '"public"'.
+lib/actions/projects.ts(48,34): error TS2345: Argument of type 'SupabaseClient<Database, "public", { Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }, never, { ...; }>' is not assignable to parameter of type 'SupabaseClient<Database, "public", "public", never, { PostgrestVersion: "12"; }>'.
+  Type '{ Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }' is not assignable to type '"public"'.
+lib/actions/projects.ts(59,7): error TS2353: Object literal may only specify known properties, and 'title' does not exist in type 'never[]'.
+lib/actions/projects.ts(92,7): error TS2345: Argument of type '{ project_id: any; technology_id: string; }[]' is not assignable to parameter of type 'never[]'.
+  Type '{ project_id: any; technology_id: string; }' is not assignable to type 'never'.
+lib/actions/projects.ts(93,29): error TS2339: Property 'id' does not exist on type 'never'.
+lib/actions/projects.ts(100,39): error TS2339: Property 'id' does not exist on type 'never'.
+lib/actions/projects.ts(122,29): error TS2339: Property 'cover_image' does not exist on type 'never'.
+lib/actions/projects.ts(123,26): error TS2339: Property 'og_image' does not exist on type 'never'.
+lib/actions/projects.ts(129,9): error TS2345: Argument of type 'SupabaseClient<Database, "public", { Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }, never, { ...; }>' is not assignable to parameter of type 'SupabaseClient<Database, "public", "public", never, { PostgrestVersion: "12"; }>'.
+  Type '{ Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }' is not assignable to type '"public"'.
+lib/actions/projects.ts(133,32): error TS2345: Argument of type 'SupabaseClient<Database, "public", { Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }, never, { ...; }>' is not assignable to parameter of type 'SupabaseClient<Database, "public", "public", never, { PostgrestVersion: "12"; }>'.
+  Type '{ Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }' is not assignable to type '"public"'.
+lib/actions/projects.ts(139,41): error TS2345: Argument of type 'SupabaseClient<Database, "public", { Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }, never, { ...; }>' is not assignable to parameter of type 'SupabaseClient<Database, "public", "public", never, { PostgrestVersion: "12"; }>'.
+  Type '{ Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }' is not assignable to type '"public"'.
+lib/actions/projects.ts(140,32): error TS2345: Argument of type 'SupabaseClient<Database, "public", { Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }, never, { ...; }>' is not assignable to parameter of type 'SupabaseClient<Database, "public", "public", never, { PostgrestVersion: "12"; }>'.
+  Type '{ Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }' is not assignable to type '"public"'.
+lib/actions/projects.ts(151,13): error TS2345: Argument of type '{ title: string; slug: string; short_description: string; full_description: string | null; status: "draft" | "published"; featured: boolean; github_url: string | null; live_url: string | null; ... 10 more ...; seo_description: string | null; }' is not assignable to parameter of type 'never'.
+lib/actions/projects.ts(185,7): error TS2345: Argument of type '{ project_id: string; technology_id: string; }[]' is not assignable to parameter of type 'never[]'.
+  Type '{ project_id: string; technology_id: string; }' is not assignable to type 'never'.
+lib/actions/projects.ts(210,28): error TS2345: Argument of type 'SupabaseClient<Database, "public", { Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }, never, { ...; }>' is not assignable to parameter of type 'SupabaseClient<Database, "public", "public", never, { PostgrestVersion: "12"; }>'.
+  Type '{ Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }' is not assignable to type '"public"'.
+lib/actions/projects.ts(211,14): error TS2339: Property 'cover_image' does not exist on type 'never'.
+lib/actions/projects.ts(212,14): error TS2339: Property 'og_image' does not exist on type 'never'.
+lib/actions/projects.ts(213,36): error TS2339: Property 'path' does not exist on type 'never'.
+lib/actions/projects.ts(221,35): error TS2339: Property 'slug' does not exist on type 'never'.
+lib/actions/projects.ts(231,13): error TS2345: Argument of type '{ status: "draft" | "published"; }' is not assignable to parameter of type 'never'.
+lib/actions/projects.ts(237,32): error TS2339: Property 'slug' does not exist on type 'never'.
+lib/actions/projects.ts(244,13): error TS2345: Argument of type '{ featured: boolean; }' is not assignable to parameter of type 'never'.
+lib/actions/projects.ts(250,32): error TS2339: Property 'slug' does not exist on type 'never'.
+lib/actions/projects.ts(260,13): error TS2345: Argument of type '{ display_order: number; }' is not assignable to parameter of type 'never'.
+lib/actions/projects.ts(289,7): error TS2345: Argument of type 'SupabaseClient<Database, "public", { Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }, never, { ...; }>' is not assignable to parameter of type 'SupabaseClient<Database, "public", "public", never, { PostgrestVersion: "12"; }>'.
+  Type '{ Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }' is not assignable to type '"public"'.
+lib/actions/projects.ts(290,16): error TS2339: Property 'slug' does not exist on type 'never'.
+lib/actions/projects.ts(307,5): error TS2353: Object literal may only specify known properties, and 'project_id' does not exist in type 'never[]'.
+lib/actions/projects.ts(317,16): error TS2339: Property 'slug' does not exist on type 'never'.
+lib/actions/projects.ts(317,58): error TS2339: Property 'slug' does not exist on type 'never'.
+lib/actions/projects.ts(327,28): error TS2345: Argument of type 'SupabaseClient<Database, "public", { Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }, never, { ...; }>' is not assignable to parameter of type 'SupabaseClient<Database, "public", "public", never, { PostgrestVersion: "12"; }>'.
+  Type '{ Tables: { admins: { Row: { user_id: string; created_at: string; }; Insert: { user_id: string; created_at?: string | undefined; }; Update: { user_id?: string | undefined; created_at?: string | undefined; }; }; ... 8 more ...; contact_messages: { ...; }; }; }' is not assignable to type '"public"'.
+lib/data/admin-blog.ts(35,45): error TS2339: Property 'tag_id' does not exist on type 'never'.
+lib/data/admin-blog.ts(43,12): error TS2698: Spread types may only be created from object types.
+lib/data/admin-projects.ts(49,5): error TS2698: Spread types may only be created from object types.
+lib/data/admin-projects.ts(50,47): error TS2339: Property 'technology_id' does not exist on type 'never'.
+lib/data/blog.ts(32,64): error TS2339: Property 'tag_id' does not exist on type 'never'.
+lib/data/blog.ts(45,30): error TS2339: Property 'post_id' does not exist on type 'never'.
+lib/data/blog.ts(46,39): error TS2339: Property 'tag_id' does not exist on type 'never'.
+lib/data/blog.ts(93,25): error TS2339: Property 'id' does not exist on type 'never'.
+lib/data/blog.ts(96,45): error TS2339: Property 'tag_id' does not exist on type 'never'.
+lib/data/blog.ts(104,12): error TS2698: Spread types may only be created from object types.
+lib/data/projects.ts(49,40): error TS2339: Property 'technology_id' does not exist on type 'never'.
+lib/data/projects.ts(66,30): error TS2339: Property 'project_id' does not exist on type 'never'.
+lib/data/projects.ts(67,40): error TS2339: Property 'technology_id' does not exist on type 'never'.
+lib/data/projects.ts(133,31): error TS2339: Property 'id' does not exist on type 'never'.
+lib/data/projects.ts(136,52): error TS2339: Property 'technology_id' does not exist on type 'never'.
+lib/data/projects.ts(150,31): error TS2339: Property 'id' does not exist on type 'never'.
+lib/data/projects.ts(155,5): error TS2698: Spread types may only be created from object types.
+lib/supabase/server.ts(26,16): error TS7006: Parameter 'cookiesToSet' implicitly has an 'any' type.
+lib/supabase/server.ts(28,37): error TS7031: Binding element 'name' implicitly has an 'any' type.
+lib/supabase/server.ts(28,43): error TS7031: Binding element 'value' implicitly has an 'any' type.
+lib/supabase/server.ts(28,50): error TS7031: Binding element 'options' implicitly has an 'any' type.
+middleware.ts(23,16): error TS7006: Parameter 'cookiesToSet' implicitly has an 'any' type.
+middleware.ts(24,35): error TS7031: Binding element 'name' implicitly has an 'any' type.
+middleware.ts(24,41): error TS7031: Binding element 'value' implicitly has an 'any' type.
+middleware.ts(28,35): error TS7031: Binding element 'name' implicitly has an 'any' type.
+middleware.ts(28,41): error TS7031: Binding element 'value' implicitly has an 'any' type.
+middleware.ts(28,48): error TS7031: Binding element 'options' implicitly has an 'any' type.
+
+===== npm run build =====
+
+> michael-adesina-portfolio@0.1.0 build
+> next build
+
+  ▲ Next.js 14.2.15
+  - Environments: .env.local
+  - Experiments (use with caution):
+    · typedRoutes
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+
+Failed to compile.
+
+./app/not-found.tsx
+1:8  Error: 'Link' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./components/ui/button.tsx
+67:20  Error: '_variant' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+67:36  Error: '_size' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+67:54  Error: '_className' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+67:76  Error: '_children' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
