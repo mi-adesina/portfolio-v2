@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Route } from "next";
 import { requireAdmin } from "@/lib/auth/require-admin";
 import { getAllProjectsAdmin } from "@/lib/data/admin-projects";
 import {
@@ -50,7 +51,7 @@ export default async function AdminProjectsPage() {
                 <tr key={project.id} className="border-b border-border">
                   <td className="py-3 pr-4">
                     <Link
-                      href={`/admin/projects/${project.id}`}
+                      href={`/admin/projects/${project.id}` as Route}
                       className="font-body text-sm text-ink hover:text-accent"
                     >
                       {project.title}
@@ -120,7 +121,7 @@ export default async function AdminProjectsPage() {
                   <td className="py-3 pr-4">
                     <div className="flex items-center gap-4">
                       <Link
-                        href={`/admin/projects/${project.id}`}
+                        href={`/admin/projects/${project.id}` as Route}
                         className="font-mono text-xs text-accent hover:underline"
                       >
                         Edit

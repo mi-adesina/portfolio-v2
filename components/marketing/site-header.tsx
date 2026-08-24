@@ -17,7 +17,7 @@ export function SiteHeader() {
   }, [pathname]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-bg/85 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-border bg-bg/85 shadow-sm backdrop-blur-md">
       <div className="mx-auto flex max-w-content items-center justify-between px-6 py-4">
         <Link
           href="/"
@@ -41,8 +41,8 @@ export function SiteHeader() {
                 href={item.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "font-body text-sm transition-colors hover:text-accent",
-                  active ? "text-accent" : "text-muted"
+                  "rounded-full px-3 py-1.5 font-body text-sm transition-colors hover:text-accent",
+                  active ? "bg-accent/10 text-accent" : "text-muted"
                 )}
               >
                 {item.label}
@@ -59,7 +59,7 @@ export function SiteHeader() {
 
         <button
           type="button"
-          className="md:hidden"
+          className="rounded-md p-1 text-ink transition-colors hover:text-accent md:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
           aria-label={open ? "Close menu" : "Open menu"}

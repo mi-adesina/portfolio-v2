@@ -6,7 +6,8 @@ import { getProjectBySlug, getPublishedProjects } from "@/lib/data/projects";
 import { publicImageUrl } from "@/lib/supabase/storage";
 import { TechBadge } from "@/components/projects/tech-badge";
 import { Button } from "@/components/ui/button";
-import { siteConfig } from "@/lib/site-config";
+import { JsonLd } from "@/components/seo/json-ld";
+import { softwareApplicationLd } from "@/lib/structured-data";
 
 export const revalidate = 60;
 
@@ -37,6 +38,16 @@ export async function generateMetadata({
       type: "article",
       images: ogImage ? [{ url: ogImage }] : undefined,
     },
+    // Without this, Twitter cards fall back to the root layout's
+    // generic site title/description instead of this project's —
+    // openGraph and twitter are separate metadata namespaces in
+    // Next.js and don't sync automatically.
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ogImage ? [ogImage] : undefined,
+    },
   };
 }
 
@@ -50,16 +61,6 @@ export default async function ProjectPage({
 
   const coverUrl = publicImageUrl(project.cover_image);
 
-  const softwareLd = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: project.title,
-    description: project.short_description,
-    applicationCategory: "WebApplication",
-    author: { "@type": "Person", name: siteConfig.name, url: siteConfig.url },
-    ...(project.live_url ? { url: project.live_url } : {}),
-  };
-
   const narrativeSections: { heading: string; body: string | null }[] = [
     { heading: "Overview", body: project.full_description },
     { heading: "Challenges", body: project.challenges },
@@ -69,10 +70,12 @@ export default async function ProjectPage({
 
   return (
     <article className="mx-auto max-w-content px-6 py-20">
-      <script
-        type="application/ld+json"
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareLd) }}
+      <JsonLd
+        data={softwareApplicationLd({
+          name: project.title,
+          description: project.short_description,
+          url: project.live_url ?? undefined,
+        })}
       />
 
       <p className="font-mono text-xs uppercase tracking-widest text-accent">

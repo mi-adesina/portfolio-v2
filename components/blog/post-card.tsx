@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Route } from "next";
 import { publicImageUrl } from "@/lib/supabase/storage";
 import type { PostListItem } from "@/lib/data/blog";
 
@@ -18,10 +19,10 @@ export function PostCard({ post }: { post: PostListItem }) {
 
   return (
     <Link
-      href={`/blog/${post.slug}`}
-      className="tick-frame group block overflow-hidden rounded-sm border border-border bg-surface p-1 transition-colors hover:border-accent"
+      href={`/blog/${post.slug}` as Route}
+      className="group block overflow-hidden rounded-xl border border-border bg-surface p-1.5 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-accent/40 hover:shadow-lg"
     >
-      <div className="relative aspect-[16/9] overflow-hidden rounded-sm bg-bg">
+      <div className="relative aspect-[16/9] overflow-hidden rounded-lg bg-bg">
         {coverUrl ? (
           <Image
             src={coverUrl}

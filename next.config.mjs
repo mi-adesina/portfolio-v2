@@ -4,24 +4,15 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        // Replace YOUR_PROJECT_REF with your actual Supabase project ref once created.
+        // Wildcard matches any Supabase project's storage CDN host —
+        // no per-project edit needed once NEXT_PUBLIC_SUPABASE_URL is set.
         hostname: "*.supabase.co",
         pathname: "/storage/v1/object/public/**",
       },
     ],
   },
-
   experimental: {
     typedRoutes: true,
-  },
-
-  // Temporary: allow deployment while TypeScript/ESLint issues are being fixed.
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-
-  eslint: {
-    ignoreDuringBuilds: true,
   },
 };
 

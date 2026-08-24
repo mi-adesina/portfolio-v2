@@ -20,6 +20,7 @@ export interface Database {
         Row: { user_id: string; created_at: string };
         Insert: { user_id: string; created_at?: string };
         Update: { user_id?: string; created_at?: string };
+        Relationships: [];
       };
       technologies: {
         Row: {
@@ -37,6 +38,7 @@ export interface Database {
           created_at?: string;
         };
         Update: Partial<Database["public"]["Tables"]["technologies"]["Insert"]>;
+        Relationships: [];
       };
       projects: {
         Row: {
@@ -88,11 +90,13 @@ export interface Database {
           updated_at?: string;
         };
         Update: Partial<Database["public"]["Tables"]["projects"]["Insert"]>;
+        Relationships: [];
       };
       project_technologies: {
         Row: { project_id: string; technology_id: string };
         Insert: { project_id: string; technology_id: string };
         Update: { project_id?: string; technology_id?: string };
+        Relationships: [];
       };
       project_images: {
         Row: {
@@ -116,6 +120,7 @@ export interface Database {
         Update: Partial<
           Database["public"]["Tables"]["project_images"]["Insert"]
         >;
+        Relationships: [];
       };
       experience: {
         Row: {
@@ -147,6 +152,7 @@ export interface Database {
           updated_at?: string;
         };
         Update: Partial<Database["public"]["Tables"]["experience"]["Insert"]>;
+        Relationships: [];
       };
       blog_posts: {
         Row: {
@@ -182,16 +188,19 @@ export interface Database {
           updated_at?: string;
         };
         Update: Partial<Database["public"]["Tables"]["blog_posts"]["Insert"]>;
+        Relationships: [];
       };
       tags: {
         Row: { id: string; name: string; slug: string };
         Insert: { id?: string; name: string; slug: string };
         Update: { id?: string; name?: string; slug?: string };
+        Relationships: [];
       };
       blog_post_tags: {
         Row: { post_id: string; tag_id: string };
         Insert: { post_id: string; tag_id: string };
         Update: { post_id?: string; tag_id?: string };
+        Relationships: [];
       };
       contact_messages: {
         Row: {
@@ -215,11 +224,28 @@ export interface Database {
         Update: Partial<
           Database["public"]["Tables"]["contact_messages"]["Insert"]
         >;
+        Relationships: [];
       };
     };
-    Views: {};
-    Functions: {};
-    Enums: {};
-    CompositeTypes: {};
+    // Views/Functions: required by GenericSchema (the constraint
+    // @supabase/supabase-js uses to resolve SupabaseClient's default
+    // generic parameters) even when empty. Relationships (added to
+    // every table above) is the separate, required-by-GenericTable
+    // property that's actually responsible for postgrest-js's
+    // .select()/.insert()/.update() row-type inference — omitting
+    // it is what was collapsing every query's row type to `never`
+    // app-wide, not just through the SupabaseClient<Database> helper
+    // functions.
+    Views: {
+      [_ in never]: never;
+    };
+    Functions: {
+      // Matches the actual Postgres function (security definer) called
+      // via supabase.rpc("is_admin") in lib/auth/require-admin.ts.
+      is_admin: {
+        Args: Record<PropertyKey, never>;
+        Returns: boolean;
+      };
+    };
   };
 }

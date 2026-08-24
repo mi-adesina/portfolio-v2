@@ -3,6 +3,8 @@ import { displayFont, bodyFont, monoFont } from "@/lib/fonts";
 import { siteConfig } from "@/lib/site-config";
 import { SiteHeader } from "@/components/marketing/site-header";
 import { SiteFooter } from "@/components/marketing/site-footer";
+import { JsonLd } from "@/components/seo/json-ld";
+import { personLd, websiteLd } from "@/lib/structured-data";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -34,30 +36,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const personLd = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: siteConfig.name,
-    url: siteConfig.url,
-    jobTitle: siteConfig.role,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: siteConfig.location,
-    },
-    sameAs: [siteConfig.links.github, siteConfig.links.linkedin, siteConfig.links.x],
-  };
-
   return (
     <html
       lang="en"
       className={`${displayFont.variable} ${bodyFont.variable} ${monoFont.variable}`}
     >
       <body className="min-h-screen font-body antialiased">
-        <script
-          type="application/ld+json"
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
-        />
+        <JsonLd data={personLd()} />
+        <JsonLd data={websiteLd()} />
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-sm focus:bg-accent focus:px-4 focus:py-2 focus:text-white"

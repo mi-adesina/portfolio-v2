@@ -2,10 +2,14 @@ import type { Metadata } from "next";
 import { getPublishedPosts, collectCategories } from "@/lib/data/blog";
 import { PostCard } from "@/components/blog/post-card";
 import { CategoryFilter } from "@/components/blog/category-filter";
+import { JsonLd } from "@/components/seo/json-ld";
+import { webPageLd } from "@/lib/structured-data";
+
+const description = "Technical writing on software development and mathematics.";
 
 export const metadata: Metadata = {
   title: "Blog",
-  description: "Technical writing on software development and mathematics.",
+  description,
   alternates: { canonical: "/blog" },
 };
 
@@ -26,6 +30,7 @@ export default async function BlogPage({
 
   return (
     <section className="mx-auto max-w-content px-6 py-20">
+      <JsonLd data={webPageLd({ name: "Blog", description, path: "/blog" })} />
       <p className="font-mono text-xs uppercase tracking-widest text-accent">
         Blog
       </p>

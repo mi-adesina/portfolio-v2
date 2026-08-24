@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Route } from "next";
 import { requireAdmin } from "@/lib/auth/require-admin";
 import { getAllPostsAdmin } from "@/lib/data/admin-blog";
 import { setPostStatus, deletePost } from "@/lib/actions/blog";
@@ -44,7 +45,7 @@ export default async function AdminBlogPage() {
                 <tr key={post.id} className="border-b border-border">
                   <td className="py-3 pr-4">
                     <Link
-                      href={`/admin/blog/${post.id}`}
+                      href={`/admin/blog/${post.id}` as Route}
                       className="font-body text-sm text-ink hover:text-accent"
                     >
                       {post.title}
@@ -75,7 +76,7 @@ export default async function AdminBlogPage() {
                   <td className="py-3 pr-4">
                     <div className="flex items-center gap-4">
                       <Link
-                        href={`/admin/blog/${post.id}`}
+                        href={`/admin/blog/${post.id}` as Route}
                         className="font-mono text-xs text-accent hover:underline"
                       >
                         Edit

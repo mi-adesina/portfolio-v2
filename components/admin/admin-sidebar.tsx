@@ -3,9 +3,10 @@ import Link from "next/link";
 const links = [
   { label: "Dashboard", href: "/admin" },
   { label: "Projects", href: "/admin/projects" },
+  { label: "Experience", href: "/admin/experience" },
   { label: "Blog", href: "/admin/blog" },
-  // Messages link lands here in Phase 6, once that route exists.
-];
+  { label: "Messages", href: "/admin/messages" },
+] as const;
 
 export function AdminSidebar() {
   return (

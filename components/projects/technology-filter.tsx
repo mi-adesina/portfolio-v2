@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Route } from "next";
 import { cn } from "@/lib/utils";
 
 export function TechnologyFilter({
@@ -31,7 +32,7 @@ export function TechnologyFilter({
       {technologies.map((t) => (
         <Link
           key={t.slug}
-          href={`/projects?tech=${t.slug}`}
+          href={`/projects?tech=${t.slug}` as Route}
           aria-current={active === t.slug ? "true" : undefined}
           className={chip(active === t.slug)}
         >

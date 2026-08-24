@@ -2,8 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import type { SupabaseClient } from "@supabase/supabase-js";
-import type { Database } from "@/types/database";
+import type { AppSupabaseClient } from "@/lib/supabase/server";
 import { requireAdmin } from "@/lib/auth/require-admin";
 import { postSchema, parsePostFormData, slugifyTag } from "@/lib/validations/blog";
 import { uploadImage, deleteStoredImages, ImageUploadError } from "@/lib/supabase/upload";
@@ -22,7 +21,7 @@ function revalidateBlogPaths(slug?: string) {
  * than failing the whole post save over it.
  */
 async function resolveTagIds(
-  supabase: SupabaseClient<Database>,
+  supabase: AppSupabaseClient,
   tagNames: string[]
 ): Promise<string[]> {
   const ids: string[] = [];

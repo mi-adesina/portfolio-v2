@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import type { PostgrestError } from "@supabase/supabase-js";
 import { requireAdmin } from "@/lib/auth/require-admin";
 import {
   projectSchema,
@@ -19,6 +20,26 @@ function revalidateProjectPaths(slug?: string) {
   revalidatePath("/");
   revalidatePath("/projects");
   if (slug) revalidatePath(`/projects/${slug}`);
+}
+
+/**
+ * Postgres error code 23505 is unique_violation — the exact case the
+ * `projects_slug_idx` unique constraint produces on a duplicate slug
+ * (see supabase/migrations). The constraint itself is what actually
+ * prevents the duplicate row from ever being created (including
+ * under a double-submission race — two concurrent inserts with the
+ * same slug can't both succeed no matter how the UI behaves); this
+ * only turns the raw constraint-violation message into something a
+ * person can act on.
+ */
+function friendlyProjectError(
+  error: PostgrestError | null,
+  fallback: string
+): string {
+  if (error?.code === "23505") {
+    return "A project with this slug already exists. Please choose a different slug or edit the existing project.";
+  }
+  return error?.message ?? fallback;
 }
 
 export async function createProject(formData: FormData) {
@@ -82,7 +103,10 @@ export async function createProject(formData: FormData) {
   if (error || !project) {
     redirect(
       `/admin/projects/new?error=${encodeURIComponent(
-        error?.message ?? "Could not create project — slug may already be taken"
+        friendlyProjectError(
+          error,
+          "Could not create project — please try again."
+        )
       )}`
     );
   }
@@ -173,7 +197,9 @@ export async function updateProject(id: string, formData: FormData) {
 
   if (error) {
     redirect(
-      `/admin/projects/${id}?error=${encodeURIComponent(error.message)}`
+      `/admin/projects/${id}?error=${encodeURIComponent(
+        friendlyProjectError(error, "Could not save project — please try again.")
+      )}`
     );
   }
 

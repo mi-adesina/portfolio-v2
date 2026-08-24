@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Route } from "next";
 import { ArrowUpRight } from "lucide-react";
 import { publicImageUrl } from "@/lib/supabase/storage";
 import { TechBadge } from "@/components/projects/tech-badge";
@@ -10,10 +11,10 @@ export function ProjectCard({ project }: { project: ProjectListItem }) {
 
   return (
     <Link
-      href={`/projects/${project.slug}`}
-      className="tick-frame group block overflow-hidden rounded-sm border border-border bg-surface p-1 transition-colors hover:border-accent"
+      href={`/projects/${project.slug}` as Route}
+      className="group block overflow-hidden rounded-xl border border-border bg-surface p-1.5 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-accent/40 hover:shadow-lg"
     >
-      <div className="relative aspect-[16/10] overflow-hidden rounded-sm bg-bg">
+      <div className="relative aspect-[16/10] overflow-hidden rounded-lg bg-bg">
         {coverUrl ? (
           <Image
             src={coverUrl}

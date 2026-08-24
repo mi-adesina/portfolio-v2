@@ -1,6 +1,6 @@
 import { publicImageUrl } from "@/lib/supabase/storage";
-import { Button } from "@/components/ui/button";
 import { Field, inputClass } from "@/components/admin/form-field";
+import { SubmitButton } from "@/components/admin/submit-button";
 
 type Technology = { id: string; name: string; slug: string; category: string };
 
@@ -47,6 +47,7 @@ export function ProjectForm({
 
   const coverUrl = publicImageUrl(project?.cover_image);
   const ogUrl = publicImageUrl(project?.og_image);
+  const isEditing = Boolean(project);
 
   return (
     <form action={action} className="flex flex-col gap-10">
@@ -342,9 +343,10 @@ export function ProjectForm({
       </fieldset>
 
       <div>
-        <Button type="submit" variant="primary">
-          Save project
-        </Button>
+        <SubmitButton
+          label={isEditing ? "Save changes" : "Create project"}
+          pendingLabel={isEditing ? "Saving changes..." : "Creating project..."}
+        />
       </div>
     </form>
   );

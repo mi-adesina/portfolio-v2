@@ -1,6 +1,5 @@
 import { randomUUID } from "crypto";
-import type { SupabaseClient } from "@supabase/supabase-js";
-import type { Database } from "@/types/database";
+import type { AppSupabaseClient } from "@/lib/supabase/server";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 const ALLOWED_TYPES = ["image/png", "image/jpeg", "image/webp", "image/gif"];
@@ -14,7 +13,7 @@ export class ImageUploadError extends Error {}
  * upload, not this function.
  */
 export async function uploadImage(
-  supabase: SupabaseClient<Database>,
+  supabase: AppSupabaseClient,
   folder: string,
   file: File
 ): Promise<string> {
@@ -42,7 +41,7 @@ export async function uploadImage(
 }
 
 export async function deleteStoredImages(
-  supabase: SupabaseClient<Database>,
+  supabase: AppSupabaseClient,
   paths: (string | null | undefined)[]
 ) {
   const validPaths = paths.filter((p): p is string => Boolean(p));

@@ -1,7 +1,4 @@
-import type { SupabaseClient } from "@supabase/supabase-js";
-import type { Database } from "@/types/database";
-
-type AppSupabaseClient = SupabaseClient<Database>;
+import type { AppSupabaseClient } from "@/lib/supabase/server";
 
 /**
  * These all take an already-authenticated client (from requireAdmin())

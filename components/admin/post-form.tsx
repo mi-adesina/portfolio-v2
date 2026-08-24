@@ -1,6 +1,6 @@
 import { publicImageUrl } from "@/lib/supabase/storage";
-import { Button } from "@/components/ui/button";
 import { Field, inputClass } from "@/components/admin/form-field";
+import { SubmitButton } from "@/components/admin/submit-button";
 
 type PostFormPost = {
   id: string;
@@ -26,6 +26,7 @@ export function PostForm({
 }) {
   const coverUrl = publicImageUrl(post?.cover_image);
   const ogUrl = publicImageUrl(post?.og_image);
+  const isEditing = Boolean(post);
 
   return (
     <form action={action} className="flex flex-col gap-10">
@@ -153,7 +154,7 @@ export function PostForm({
         <Field
           label="Content"
           htmlFor="content"
-          hint="Plain text — separate paragraphs with a blank line"
+          hint="Write using simple Markdown. Use a blank line between paragraphs."
         >
           <textarea
             id="content"
@@ -212,9 +213,10 @@ export function PostForm({
       </fieldset>
 
       <div>
-        <Button type="submit" variant="primary">
-          Save post
-        </Button>
+        <SubmitButton
+          label={isEditing ? "Save changes" : "Create post"}
+          pendingLabel={isEditing ? "Saving changes..." : "Creating post..."}
+        />
       </div>
     </form>
   );

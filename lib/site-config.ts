@@ -3,26 +3,26 @@ export const siteConfig = {
 
   title: "Michael Adesina — Full-Stack Developer",
 
-  role: "Full-Stack Developer (MERN) · Front-End Specialist",
+  role: "Full-Stack Developer · React, Next.js & Node.js",
 
   headline:
-    "I build modern, scalable web applications with React, Next.js, TypeScript and Node.js.",
+    "Full-stack developer building modern web applications with Next.js, React, TypeScript, Node.js and Supabase.",
 
   description:
-    "Michael Adesina is a Lagos-based full-stack developer and mathematics educator specializing in React, Next.js, TypeScript, Node.js and modern web technologies. He builds responsive, scalable and user-focused web applications.",
+    "Michael Adesina is a Full-Stack Developer based in Lagos, Nigeria. He specializes in Next.js, React, TypeScript, Node.js, PostgreSQL, Supabase and modern web technologies. He holds a B.Sc. in Pure Mathematics from the University of Lagos and enjoys building scalable applications that solve real-world problems.",
 
   location: "Lagos, Nigeria",
 
   url:
     process.env.NEXT_PUBLIC_SITE_URL ??
-    "http://localhost:3000",
+    "https://portfolio-v2-lovat-one.vercel.app",
 
   email: "mi.adesina.codes@gmail.com",
 
   links: {
     github: "https://github.com/mi-adesina",
 
-    linkedin: "https://www.linkedin.com/in/mi-adesina/",
+    linkedin: "https://linkedin.com/in/mi-adesina",
 
     x: "https://x.com/adesina_mi",
 
@@ -37,4 +37,36 @@ export const siteConfig = {
     { label: "Blog", href: "/blog" },
     { label: "Contact", href: "/contact" },
   ],
+
+  skills: {
+    frontend: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "Sass",
+    ],
+
+    backend: [
+      "Node.js",
+      "Express.js",
+      "REST APIs",
+    ],
+
+    database: [
+      "PostgreSQL",
+      "Supabase",
+      "MongoDB",
+    ],
+
+    tools: [
+      "Git",
+      "GitHub",
+      "Vercel",
+      "VS Code",
+      "Postman",
+    ],
+  },
 } as const;

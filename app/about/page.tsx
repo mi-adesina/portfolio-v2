@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/lib/site-config";
+import { JsonLd } from "@/components/seo/json-ld";
+import { webPageLd } from "@/lib/structured-data";
+
+const description = `Learn about ${siteConfig.name}, a Full-Stack Developer based in Lagos, Nigeria, with a background in Pure Mathematics and experience building modern web applications with React, Next.js, TypeScript, Node.js, and Supabase.`;
 
 export const metadata: Metadata = {
   title: "About",
-  description: `About ${siteConfig.name} — background, approach, and how mathematics shapes the way I build software.`,
+  description,
   alternates: { canonical: "/about" },
 };
 
@@ -11,43 +15,39 @@ const sections: { heading: string; body: string }[] = [
   {
     heading: "Mathematics background",
     body:
-      "I studied Pure Mathematics at the University of Lagos. That training shaped how I approach problems in general: breaking a system down to its underlying structure before writing a single line of code, and being comfortable holding several abstractions in mind at once.",
-    // TODO: add specifics — thesis focus, notable coursework, or a concrete
-    // example of how a mathematical idea shaped an engineering decision.
+      "I earned a B.Sc. in Pure Mathematics from the University of Lagos. Mathematics trained me to think in terms of structure, logic, and abstraction—skills that translate directly into software engineering. Whether I'm designing a database schema, debugging an application, or building a new feature, I approach problems by breaking them into smaller, understandable parts before implementing a solution.",
   },
   {
     heading: "Into software development",
     body:
-      "I moved from mathematics into full-stack development, building on the same foundation of structured, logical thinking. Today I work primarily across the JavaScript/TypeScript ecosystem — Next.js and React on the front end, Node.js and Express on the back end.",
-    // TODO: add the specific turning point — a course, a project, a job —
-    // that marked the transition, if you want that detail public.
+      "My transition into software development grew naturally from my interest in problem-solving and technology. What began as curiosity evolved into building real applications with JavaScript and TypeScript. Over time, I developed expertise in React, Next.js, Node.js, and modern web development practices, focusing on creating applications that are both functional and maintainable.",
   },
   {
     heading: "Front-end development",
     body:
-      "I build interfaces with React and Next.js, with attention to performance, accessibility, and responsive design across devices — not just how a page looks, but how it holds up under real usage.",
+      "I build modern user interfaces using React, Next.js, and TypeScript. My focus is on creating responsive, accessible, and performant experiences that work well across devices. I enjoy transforming complex requirements into intuitive interfaces while maintaining clean, scalable code.",
   },
   {
     heading: "Full-stack development",
     body:
-      "Beyond the interface, I work across the stack: designing schemas, building APIs, wiring up authentication and authorization, and deploying and maintaining the systems I build. My primary tools here are Node.js, Express, MongoDB, and Supabase (Postgres).",
+      "Beyond the front end, I work across the entire application stack. I build APIs with Node.js and Express, design and manage databases with PostgreSQL, Supabase, and MongoDB, implement authentication and authorization systems, and deploy applications to production environments. This end-to-end perspective helps me build solutions that are cohesive and reliable.",
   },
   {
     heading: "Approach to engineering",
     body:
-      "I care about building things that are useful, not just impressive in a demo. That means thinking about maintainability and security from the start, not bolting them on later, and being honest about trade-offs rather than overselling a solution.",
-    // TODO: add a concrete example or two once available.
+      "I believe good software balances functionality, maintainability, and user experience. I value clean architecture, thoughtful design decisions, and continuous learning. Rather than chasing trends, I focus on selecting technologies that best solve the problem at hand and can be maintained effectively over time.",
   },
   {
     heading: "Teaching and communication",
     body:
-      "I have experience as a mathematics educator and tutor. Teaching mathematics — a subject that punishes vague explanations — trained me to break down complex ideas into something a specific audience can actually follow, which carries directly into writing documentation, code reviews, and technical discussions.",
+      "Alongside software development, I have several years of experience teaching and tutoring mathematics. Teaching strengthened my communication skills and taught me how to explain complex concepts clearly to different audiences. Those skills carry directly into software engineering through documentation, collaboration, mentoring, and technical discussions.",
   },
 ];
 
 export default function AboutPage() {
   return (
     <section className="mx-auto max-w-content px-6 py-20">
+      <JsonLd data={webPageLd({ name: "About", description, path: "/about" })} />
       <p className="font-mono text-xs uppercase tracking-widest text-accent">
         About
       </p>

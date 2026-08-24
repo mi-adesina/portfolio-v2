@@ -5,11 +5,15 @@ import {
 } from "@/lib/data/projects";
 import { ProjectCard } from "@/components/projects/project-card";
 import { TechnologyFilter } from "@/components/projects/technology-filter";
+import { JsonLd } from "@/components/seo/json-ld";
+import { webPageLd } from "@/lib/structured-data";
+
+const description =
+  "Selected full-stack software projects built with Next.js, React, TypeScript, and Supabase.";
 
 export const metadata: Metadata = {
   title: "Projects",
-  description:
-    "Selected full-stack software projects built with Next.js, React, TypeScript, and Supabase.",
+  description,
   alternates: { canonical: "/projects" },
 };
 
@@ -33,6 +37,7 @@ export default async function ProjectsPage({
 
   return (
     <section className="mx-auto max-w-content px-6 py-20">
+      <JsonLd data={webPageLd({ name: "Projects", description, path: "/projects" })} />
       <p className="font-mono text-xs uppercase tracking-widest text-accent">
         Projects
       </p>

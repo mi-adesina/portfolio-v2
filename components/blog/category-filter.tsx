@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Route } from "next";
 import { cn } from "@/lib/utils";
 
 export function CategoryFilter({
@@ -27,7 +28,7 @@ export function CategoryFilter({
       {categories.map((category) => (
         <Link
           key={category}
-          href={`/blog?category=${encodeURIComponent(category)}`}
+          href={`/blog?category=${encodeURIComponent(category)}` as Route}
           aria-current={active === category ? "true" : undefined}
           className={chip(active === category)}
         >

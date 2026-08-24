@@ -1,7 +1,4 @@
-import type { SupabaseClient } from "@supabase/supabase-js";
-import type { Database } from "@/types/database";
-
-type AppSupabaseClient = SupabaseClient<Database>;
+import type { AppSupabaseClient } from "@/lib/supabase/server";
 
 export async function getAllPostsAdmin(supabase: AppSupabaseClient) {
   const { data, error } = await supabase

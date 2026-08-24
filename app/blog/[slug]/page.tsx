@@ -4,7 +4,9 @@ import { notFound } from "next/navigation";
 import { getPostBySlug, getPublishedPosts } from "@/lib/data/blog";
 import { publicImageUrl } from "@/lib/supabase/storage";
 import { TagBadge } from "@/components/blog/tag-badge";
-import { siteConfig } from "@/lib/site-config";
+import { BlogContent } from "@/components/blog/blog-content";
+import { JsonLd } from "@/components/seo/json-ld";
+import { articleLd } from "@/lib/structured-data";
 
 export const revalidate = 60;
 
@@ -36,6 +38,14 @@ export async function generateMetadata({
       publishedTime: post.published_at ?? undefined,
       images: ogImage ? [{ url: ogImage }] : undefined,
     },
+    // See the same note on the project detail page — openGraph and
+    // twitter don't sync automatically in Next.js metadata.
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ogImage ? [ogImage] : undefined,
+    },
   };
 }
 
@@ -59,32 +69,16 @@ export default async function BlogPostPage({
   const coverUrl = publicImageUrl(post.cover_image);
   const date = formatDate(post.published_at);
 
-  // Content is stored as plain text — paragraphs are separated by a
-  // blank line. No markdown renderer here by design (see README):
-  // it's an unnecessary dependency for a single-author blog until
-  // there's an actual need for rich formatting.
-  const paragraphs = post.content
-    .split(/\n{2,}/)
-    .map((p) => p.trim())
-    .filter(Boolean);
-
-  const articleLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: post.title,
-    ...(post.excerpt ? { description: post.excerpt } : {}),
-    author: { "@type": "Person", name: siteConfig.name, url: siteConfig.url },
-    ...(post.published_at ? { datePublished: post.published_at } : {}),
-    dateModified: post.updated_at,
-    ...(coverUrl ? { image: coverUrl } : {}),
-  };
-
   return (
     <article className="mx-auto max-w-2xl px-6 py-20">
-      <script
-        type="application/ld+json"
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
+      <JsonLd
+        data={articleLd({
+          headline: post.title,
+          description: post.excerpt ?? undefined,
+          datePublished: post.published_at,
+          dateModified: post.updated_at,
+          image: coverUrl,
+        })}
       />
 
       {post.category && (
@@ -118,10 +112,8 @@ export default async function BlogPostPage({
         </div>
       )}
 
-      <div className="mt-10 flex flex-col gap-5 font-body text-base leading-relaxed text-ink">
-        {paragraphs.map((paragraph, index) => (
-          <p key={index}>{paragraph}</p>
-        ))}
+      <div className="mt-10">
+        <BlogContent content={post.content} />
       </div>
     </article>
   );
