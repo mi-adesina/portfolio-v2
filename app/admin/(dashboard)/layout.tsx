@@ -3,6 +3,17 @@ import { requireAdmin } from "@/lib/auth/require-admin";
 import { AdminSidebar } from "@/components/admin/admin-sidebar";
 import { signOut } from "@/lib/actions/auth";
 
+// Explicit, rather than relying on cookies() usage inside
+// requireAdmin() to implicitly opt this route into dynamic
+// rendering. That implicit behavior governs whether the HTML is
+// re-rendered per request — it does NOT reliably prevent an
+// individual fetch() call (like the ones requireAdmin() makes to
+// check auth) from being served out of Next's Data Cache. This
+// directive is the explicit, documented way to guarantee neither
+// this layout nor anything nested under it is cached, for every
+// current and future route in the admin tree.
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };

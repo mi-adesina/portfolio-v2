@@ -18,6 +18,13 @@ freeCodeCamp-era beginner portfolio.
 > alone don't grant PostgREST's `anon`/`authenticated` roles table
 > access; see "GRANT vs RLS" under Supabase setup below.
 >
+> **Security fix applied — verify this yourself.** A real admin-auth
+> bypass was found and fixed: `/admin` could be reached without
+> logging in, in an incognito window, in a production build. Root
+> cause and fix are in "Admin auth bypass fix" below. If you deployed
+> a build from before this fix, redeploy and re-test before trusting
+> `/admin` is actually protected.
+>
 > **Stabilization pass (post-launch):** a batch of TypeScript/build
 > errors reported after a real `npm install` + `tsc` run were fixed —
 > see "Stabilization pass" below for root causes, exact files changed,
@@ -919,6 +926,68 @@ carefully across this stabilization pass, but reasoning isn't the
 same as watching it work — and Phase 4 of the original brief listed
 those as acceptance criteria alongside the three commands, not
 instead of them.
+
+## Admin auth bypass fix
+
+**What was causing it:** `requireAdmin()` and the `(dashboard)` layout
+that calls it were logically correct — the bug wasn't in the auth
+check itself. It was caching. `lib/supabase/server.ts`'s `createClient()`
+never told Supabase's underlying `fetch()` calls to skip Next.js's
+fetch Data Cache, and the `(dashboard)/layout.tsx` route segment had
+no explicit `dynamic`/`fetchCache` directive either. `cookies()` usage
+inside `createClient()` was enough to make Next re-render the route's
+HTML per request (confirmed by the `ƒ` markers in every build output
+above) — but that's a *different* Next.js caching mechanism than the
+one governing individual `fetch()` calls. Without an explicit
+opt-out, `supabase.auth.getUser()` and `supabase.rpc("is_admin")` —
+both plain, uncached-by-neither-library `fetch()` calls — were
+eligible for Next's default fetch caching. One real admin session's
+"authenticated, is_admin=true" response could get cached and replayed
+to a completely different visitor with zero cookies. This doesn't
+show up in `npm run dev` (dev mode disables most caching), only in a
+production build — which is exactly why it wasn't caught earlier.
+
+**What changed:**
+- `lib/supabase/server.ts` — added a `noStoreFetch` wrapper (forces
+  `cache: "no-store"` on every request) and passed it via
+  `global: { fetch: noStoreFetch }` to `createServerClient()`. This is
+  the client `requireAdmin()` uses, and every admin data-layer
+  function (`admin-projects.ts`, `admin-blog.ts`, `admin-messages.ts`,
+  `upload.ts`) receives its client through `requireAdmin()`'s return
+  value — none of those files needed changes, since they only import
+  the `AppSupabaseClient` *type*, not the `createClient()` function.
+- `app/admin/(dashboard)/layout.tsx` — added `export const dynamic = "force-dynamic"`
+  explicitly, rather than relying on `cookies()` usage to imply it.
+  Belt-and-suspenders: guarantees this behavior for every current and
+  future route nested under this layout, without depending on
+  implicit inference.
+
+Neither change touches auth *logic*, RLS, the service-role key
+(`lib/supabase/admin.ts` is untouched and still unused), or
+`middleware.ts` (its `getUser()` call only refreshes the session
+cookie — nothing branches on its result, so it isn't part of the
+access-control decision and didn't need this fix).
+
+**How to test it:**
+1. `npm run build && npm run start` (a `next dev` server won't
+   reproduce this — dev mode doesn't apply the same caching).
+2. Open an incognito/private window with no prior session.
+3. Go straight to `/admin` (and try `/admin/projects`,
+   `/admin/experience`, `/admin/blog`, `/admin/messages` directly
+   too). Every one should redirect to `/admin/login` — none should
+   render any dashboard content.
+4. Sign in normally, confirm `/admin` still works for you.
+5. Open a *second*, separate incognito window and repeat step 3 —
+   confirm it still redirects, even though you're actively signed in
+   elsewhere. This step specifically catches the caching bug: it's
+   the scenario where a stale "authenticated" response could
+   otherwise leak across sessions.
+
+Not yet run here (same network constraint noted throughout this
+README): `npx tsc --noEmit` and `npm run build` against this specific
+change. Both changes were checked carefully by hand — the import
+resolves, the fetch wrapper's types match what `createServerClient`
+expects — but please run both and paste the output if either fails.
 
 ## Roadmap
 

@@ -4,6 +4,24 @@ import { createClient as createSupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@/types/database";
 
 /**
+ * Forces every request this client makes to bypass Next.js's fetch
+ * Data Cache. Root cause of a real admin-auth bypass found in
+ * production testing: neither @supabase/supabase-js nor @supabase/ssr
+ * set a `cache` option on their own fetch() calls, so
+ * supabase.auth.getUser() / supabase.rpc("is_admin") were subject to
+ * Next's default fetch caching — meaning one real admin session's
+ * "authenticated" response could be cached and replayed to a
+ * completely different, unauthenticated visitor. This client is used
+ * for exactly the calls that make that decision (requireAdmin() and
+ * every admin Server Action), so this is where it must be fixed,
+ * rather than relying on every current and future admin route
+ * remembering a route-segment config.
+ */
+function noStoreFetch(input: RequestInfo | URL, init?: RequestInit) {
+  return fetch(input, { ...init, cache: "no-store" });
+}
+
+/**
  * The type used everywhere a Supabase client is passed between
  * functions (admin data-layer helpers, upload helpers, Server
  * Actions). Deliberately derived from @supabase/supabase-js's own
@@ -49,6 +67,9 @@ export async function createClient(): Promise<AppSupabaseClient> {
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
+      global: {
+        fetch: noStoreFetch,
+      },
       cookies: {
         getAll() {
           return cookieStore.getAll();
