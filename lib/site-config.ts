@@ -1,15 +1,15 @@
 export const siteConfig = {
   name: "Michael Adesina",
 
-  title: "Michael Adesina — Full-Stack Developer",
+  title: "Michael Adesina — Full-Stack TypeScript & AI Engineer",
 
-  role: "Full-Stack Developer · React, Next.js & Node.js",
+  role: "Full-Stack Developer · Next.js, React, TypeScript & AI",
 
   headline:
-    "Full-stack developer building modern web applications with Next.js, React, TypeScript, Node.js and Supabase.",
+    "Full-stack developer building performant web applications and AI-driven experiences with Next.js, React, TypeScript, and serverless architectures.",
 
   description:
-    "Michael Adesina is a Full-Stack Developer based in Lagos, Nigeria. He specializes in Next.js, React, TypeScript, Node.js, PostgreSQL, Supabase and modern web technologies. He holds a B.Sc. in Pure Mathematics from the University of Lagos and enjoys building scalable applications that solve real-world problems.",
+    "Michael Adesina is a Full-Stack Developer based in Lagos, Nigeria. He specializes in Next.js (App Router), React, TypeScript, Tailwind CSS, Framer Motion, Node.js, Convex, Supabase, and Claude LLM API integrations. He holds a B.Sc. in Pure Mathematics from the University of Lagos and enjoys building scalable, high-performance applications.",
 
   location: "Lagos, Nigeria",
 
@@ -40,30 +40,37 @@ export const siteConfig = {
 
   skills: {
     frontend: [
+      "Next.js (App Router)",
       "React",
-      "Next.js",
       "TypeScript",
-      "JavaScript",
-      "HTML",
-      "CSS",
+      "Tailwind CSS",
+      "Framer Motion",
+      "JavaScript (ES6+)",
+      "HTML5 / CSS3",
       "Sass",
     ],
 
     backend: [
       "Node.js",
       "Express.js",
+      "Convex",
+      "Serverless Functions",
       "REST APIs",
+      "Claude LLM APIs",
     ],
 
     database: [
       "PostgreSQL",
       "Supabase",
       "MongoDB",
+      "Convex DB",
     ],
 
     tools: [
       "Git",
       "GitHub",
+      "GitHub Actions (CI/CD)",
+      "Jest",
       "Vercel",
       "VS Code",
       "Postman",
